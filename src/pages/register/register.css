@@ -1,0 +1,40 @@
+.register{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.registerContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.registerContainer>input{
+    height: 30px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 5px gray;
+}
+
+.registerContainer>button{
+    border: none;
+    padding: 10px;
+    background-color: yellowgreen;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.registerContainer > p{
+    color: rgb(71, 71, 71);
+}
+
+.registerContainer > p > span{
+    color: yellowgreen;
+    font-weight: bold;
+    cursor: pointer;
+}

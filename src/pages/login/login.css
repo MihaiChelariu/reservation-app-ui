@@ -1,0 +1,48 @@
+.login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.loginContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.loginContainer>input{
+    height: 30px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 5px gray;
+}
+
+.loginContainer>button{
+    border: none;
+    padding: 10px;
+    background-color: yellowgreen;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.loginContainer > p{
+    color: rgb(71, 71, 71);
+}
+
+.loginContainer > p > span{
+    color: yellowgreen;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.error{
+    background-color: red;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0 5px pink;
+    color: white !important;
+}

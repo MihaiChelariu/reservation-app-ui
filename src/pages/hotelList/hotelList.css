@@ -1,0 +1,73 @@
+.listContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.listWrapper{
+    width: 100%;
+    max-width: 1024px;
+    display: flex;
+    gap: 20px;
+}
+
+.lfTitle{
+    font-size: 20px;
+    color: gray;
+    margin-bottom: 20px;
+}
+
+.filterNrItem{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.filterNrItem>input{
+    height: 30px;
+    width: 50px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px lightgray;
+    padding: 5px;
+}
+
+.filterNrItem>label{
+    font-size: 14px;
+}
+
+.filterItem{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.filterItem>label{
+    font-size: 16px;
+}
+
+.listFilters{
+    position: sticky;
+    flex: 1;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 5px lightgray;
+    margin-top: 20px;
+    height: max-content;
+}
+
+.listFilters>button{
+    padding: 10px;
+    background-color: yellowgreen;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.listResults{
+    flex: 3;
+}

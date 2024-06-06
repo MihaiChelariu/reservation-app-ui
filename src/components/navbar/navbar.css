@@ -1,0 +1,67 @@
+.navbar{
+    height: 50px;
+    background-color: rgb(0, 105, 0);
+    display: flex;
+    justify-content: center;
+}
+
+.navContainer{
+    width: 100%;
+    max-width: 1024px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo{
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.navButton{
+    margin-left: 20;
+    padding: 5px 10px;
+    cursor: pointer;
+    color: rgb(0, 105, 0);
+    border-radius: 5px;
+}
+
+.navItems{
+    position: relative;
+}
+
+.navMenu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0; 
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.479);
+    padding: 10px;
+    width: 130px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 5px gray;
+    gap: 20px;
+}
+
+.menuIcon {
+    position: relative; 
+    cursor: pointer;
+    margin-left: 10px; 
+}
+
+.navMenu > span{
+    cursor: pointer;
+}
+
+.navMenu > span:hover{
+    color: yellowgreen;
+}
+
+.deleteAcc{
+    color: red;
+}
