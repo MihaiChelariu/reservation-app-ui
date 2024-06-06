@@ -28,18 +28,18 @@ const RoomMenu = ({ setOpenRoomMenu, idHotel, setHotelResponse, openRoomMenu }: 
 
     const { data, loading, error } = useFetch(`http://localhost:8091/api/hotel/getRoomsAvailable/${idHotel}?checkin=${format(new Date(date.startDate), 'yyyy-MM-dd')}&checkout=${format(new Date(date.endDate), 'yyyy-MM-dd')}`);
 
-    for(const day of data){
-        if(day.availableSingleRooms < availableRooms.single)
+    for (const day of data) {
+        if (day.availableSingleRooms < availableRooms.single)
             setAvailableRooms(prevRooms => ({
                 ...prevRooms,
                 single: day.availableSingleRooms
             }));
-        if(day.availableDoubleRooms < availableRooms.double)
+        if (day.availableDoubleRooms < availableRooms.double)
             setAvailableRooms(prevRooms => ({
                 ...prevRooms,
                 double: day.availableDoubleRooms
             }));
-        if(day.availablePremiumRooms < availableRooms.premium)
+        if (day.availablePremiumRooms < availableRooms.premium)
             setAvailableRooms(prevRooms => ({
                 ...prevRooms,
                 premium: day.availablePremiumRooms
@@ -73,31 +73,31 @@ const RoomMenu = ({ setOpenRoomMenu, idHotel, setHotelResponse, openRoomMenu }: 
             setHotelResponse("No rooms selected");
         } else {
             try {
-                const status = await axios.post(`http://localhost:8092/api/rezervation/saveRezervation`, {
-                    idUser: Cookies.get("userLogin"),
-                    idHotel: idHotel,
-                    checkinDate: format(new Date(date.startDate), 'yyyy-MM-dd'),
-                    checkoutDate: format(new Date(date.endDate), 'yyyy-MM-dd'),
-                    nrSingleRooms: roomCounter.single,
-                    nrDoubleRooms: roomCounter.double,
-                    nrPremiumRooms: roomCounter.premium
-                });
-                setRoomCounter({
-                    single: 0,
-                    double: 0,
-                    premium: 0
-                });
 
-                if (status.status === 200) {
-                    const response = await axios.put(`http://localhost:8091/api/hotel/updateCameras/${idHotel}
+                const response = await axios.put(`http://localhost:8091/api/hotel/updateCameras/${idHotel}
                     ?checkin=${format(new Date(date.startDate), 'yyyy-MM-dd')}&checkout=${format(new Date(date.endDate), 'yyyy-MM-dd')}&singleCameras=${roomCounter.single}&doubleCameras=${roomCounter.double}&premiumCameras=${roomCounter.single}`);
 
-                    if (response.status === 200)
-                        console.log("rooms updated");
-                    else
-                        throw new Error("rooms not updated");
+                console.log(response);
+
+                if (response.data != "") {
+                    const status = await axios.post(`http://localhost:8092/api/rezervation/saveRezervation`, {
+                        idUser: Cookies.get("userLogin"),
+                        idHotel: idHotel,
+                        checkinDate: format(new Date(date.startDate), 'yyyy-MM-dd'),
+                        checkoutDate: format(new Date(date.endDate), 'yyyy-MM-dd'),
+                        nrSingleRooms: roomCounter.single,
+                        nrDoubleRooms: roomCounter.double,
+                        nrPremiumRooms: roomCounter.premium
+                    });
+                    setRoomCounter({
+                        single: 0,
+                        double: 0,
+                        premium: 0
+                    });
+                    setHotelResponse("Rezervation made!");
                 } else {
-                    throw new Error("rezervation not made");
+                    console.log("failed");
+                    setHotelResponse("Rezervation failed!");
                 }
 
                 console.log("Reservation made!");
@@ -111,7 +111,7 @@ const RoomMenu = ({ setOpenRoomMenu, idHotel, setHotelResponse, openRoomMenu }: 
                 } else {
                     setHotelResponse("An error occurred, please try again later.");
                 }
-                
+
             }
             setOpenRoomMenu(false);
         }
