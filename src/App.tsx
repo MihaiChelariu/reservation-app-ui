@@ -8,6 +8,7 @@ import HotelList from "./pages/hotelList/HotelList";
 import Hotel from "./pages/hotel/Hotel";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
+import Admin from "./pages/admin/Admin";
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/hotel/:id" element={<Hotel />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/admin" element = {<Admin />}/>
       </Routes>
     </BrowserRouter>
   );

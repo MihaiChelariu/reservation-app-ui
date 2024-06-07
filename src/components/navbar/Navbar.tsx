@@ -45,6 +45,10 @@ const Navbar = () => {
         navigate("/");
     }
 
+    const handleManageHotels = () => {
+        navigate("/admin");
+    } 
+
     return (
         <div className="navbar">
             <div className="navContainer">
@@ -57,7 +61,7 @@ const Navbar = () => {
                             <div className="navMenu">
                                 <span>My Reservations</span>
                                 <span onClick={handleLogOut}>Log Out</span>
-                                {Cookies.get("adminUser") === "true" ? (<span>Mannage resources</span>):null} 
+                                {Cookies.get("adminUser") === "true" ? (<span onClick={handleManageHotels}>Mannage Hotels</span>):null} 
                                 <span onClick={handleDelete} className="deleteAcc">Delete Account</span>
                             </div>}
                     </>) : (
