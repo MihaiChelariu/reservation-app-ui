@@ -41,6 +41,10 @@ const Navbar = () => {
         }
     }
 
+    const handleReservations = () => {
+        navigate("/dashboard");
+    }
+
     const handleLogoClick = () => {
         navigate("/");
     }
@@ -59,7 +63,7 @@ const Navbar = () => {
                         <FontAwesomeIcon icon={faBars} onClick={() => setOpenMenu(!openMenu)} className="menuIcon" />
                         {openMenu &&
                             <div className="navMenu">
-                                <span>My Reservations</span>
+                                <span onClick={handleReservations}>My Reservations</span>
                                 <span onClick={handleLogOut}>Log Out</span>
                                 {Cookies.get("adminUser") === "true" ? (<span onClick={handleManageHotels}>Mannage Hotels</span>):null} 
                                 <span onClick={handleDelete} className="deleteAcc">Delete Account</span>

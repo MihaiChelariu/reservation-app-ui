@@ -1,7 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import { useState } from "react";
-import { DateRange } from 'react-date-range';
-import { format } from "date-fns";
 
 import Home from "./pages/home/Home";
 import HotelList from "./pages/hotelList/HotelList";
@@ -9,11 +6,9 @@ import Hotel from "./pages/hotel/Hotel";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import Admin from "./pages/admin/Admin";
+import Reservations from "./pages/reservations/Reservations";
 
 function App() {
-
-  
-
   return (
     <BrowserRouter>
       <Routes>
@@ -23,6 +18,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/admin" element = {<Admin />}/>
+        <Route path="/dashboard" element = {<Reservations />}/>
       </Routes>
     </BrowserRouter>
   );
