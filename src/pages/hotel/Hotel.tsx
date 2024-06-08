@@ -18,6 +18,9 @@ const Hotel = () => {
     const { id } = useParams<{ id: string }>();
     const { data, loading, error } = useFetch(`http://localhost:8091/api/photos/getAllByHotelId/${id}`);
     const { data: hotel, loading: loadingHotel, error: hotelError } = useFetch(`http://localhost:8091/api/hotel/getHotel/${id}`);
+    const {data: singleRoomPhotos, loading: loadingSingleRoomPhotos, error: errorSingleRoomPhotos} = useFetch(`http://localhost:8091/api/photos/getPhotosByType/${id}?type=${"single"}`)
+    const {data: doubleRoomPhotos, loading: loadingDoubleRoomPhotos, error: errorDoubleRoomPhotos} = useFetch(`http://localhost:8091/api/photos/getPhotosByType/${id}?type=${"double"}`)
+    const {data: premiumRoomPhotos, loading: loadingPremiumRoomPhotos, error: errorPremiumRoomPhotos} = useFetch(`http://localhost:8091/api/photos/getPhotosByType/${id}?type=${"premium"}`)
     const [slider, setSlider] = useState<number>(0);
     const [openSlider, setOpenSlider] = useState(false);
     const [openRoomMenu, setOpenRoomMenu] = useState(false);
@@ -83,9 +86,37 @@ const Hotel = () => {
                             <FontAwesomeIcon icon={faLocationDot} />
                             <span>{hotel.hotelLocation}</span>
                         </div>
+                        <span style={{fontWeight: 'bold'}}>All photos</span>
                         <div className="hotelImages">
                             {loading ? "Loading Photos..." :
                                 data.map((photo: any, index: number) => (
+                                    <div className="imgWrapper" key={index}>
+                                        <img onClick={() => handleSlider(index)} src={photo.urlPhoto} />
+                                    </div>
+                                ))}
+                        </div>
+                        <span style={{fontWeight: 'bold'}}>Single Rooms</span>
+                        <div className="hotelImages">
+                            {loadingSingleRoomPhotos ? "Loading Photos..." :
+                                singleRoomPhotos.map((photo: any, index: number) => (
+                                    <div className="imgWrapper" key={index}>
+                                        <img onClick={() => handleSlider(index)} src={photo.urlPhoto} />
+                                    </div>
+                                ))}
+                        </div>
+                        <span style={{fontWeight: 'bold'}}>Double Rooms</span>
+                        <div className="hotelImages">
+                            {loadingDoubleRoomPhotos ? "Loading Photos..." :
+                                doubleRoomPhotos.map((photo: any, index: number) => (
+                                    <div className="imgWrapper" key={index}>
+                                        <img onClick={() => handleSlider(index)} src={photo.urlPhoto} />
+                                    </div>
+                                ))}
+                        </div>
+                        <span style={{fontWeight: 'bold'}}>Premium Rooms</span>
+                        <div className="hotelImages">
+                            {loadingPremiumRoomPhotos ? "Loading Photos..." :
+                                premiumRoomPhotos.map((photo: any, index: number) => (
                                     <div className="imgWrapper" key={index}>
                                         <img onClick={() => handleSlider(index)} src={photo.urlPhoto} />
                                     </div>

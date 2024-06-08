@@ -81,17 +81,19 @@
     margin-bottom: 20px;
 }
 
-.hotelImages{
+.hotelImages {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+    gap: 10px; 
+}
+
+.imgWrapper {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
 }
 
-.imgWrapper{
-    width: calc(33.33% - 10px);
-}
-
-.imgWrapper>img{
+.imgWrapper > img {
     width: 100%;
     height: 200px;
     object-fit: cover;

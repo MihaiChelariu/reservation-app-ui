@@ -111,7 +111,7 @@ const RoomMenu = ({ setOpenRoomMenu, idHotel, setHotelResponse, openRoomMenu }: 
                 } else {
                     setHotelResponse("An error occurred, please try again later.");
                 }
-
+                
             }
             setOpenRoomMenu(false);
         }

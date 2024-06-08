@@ -1,0 +1,40 @@
+.addPhotoMenu{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.473);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.addPhotoMenuContainer{
+    background-color: white;
+    padding: 50px;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0 0 5px gray;
+}
+
+.addPhotoOptions{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px; 
+}
+
+.addPhotoButton{
+    background-color: rgb(65, 126, 65);
+    color: white;
+    font-weight: 500;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 5px;
+    margin-left: 70px;
+    margin-top: 10px;
+}

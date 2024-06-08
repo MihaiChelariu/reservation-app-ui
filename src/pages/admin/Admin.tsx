@@ -4,6 +4,7 @@ import useFetch from "../../hooks/useFetch";
 import "./admin.css"
 import axios from "axios";
 import HotelMenu from "../../components/hotelMenu/HotelMenu";
+import AddPhotoMenu from "../../components/addPhotoMenu/AddPhotoMenu";
 
 const Admin = () => {
     const { data, loading, error } = useFetch(`http://localhost:8091/api/hotel/getAllHotels`);
@@ -11,6 +12,8 @@ const Admin = () => {
     const [filteredHotels, setFilteredHotels] = useState<any[]>([]);
     const [searched, setSearched] = useState(false);
     const [openHotelMenu, setOpenHotelMenu] = useState(false);
+    const [hotelId, setHotelId] = useState<number>();
+    const [openPhotoMenu, setOpenPhotoMenu] = useState(false);
 
     useEffect(() => {
         if (!loading && !error) {
@@ -37,6 +40,11 @@ const Admin = () => {
         setOpenHotelMenu(true);
     }
 
+    const handleAddPhoto = (id: number) => {
+        setHotelId(id);
+        setOpenPhotoMenu(true);
+    }
+
     const handleDelete = async (id: number) => {
         try {
             await axios.delete(`http://localhost:8091/api/hotel/deleteHotelById/${id}`);
@@ -60,7 +68,7 @@ const Admin = () => {
                 />
                 <button className="adminButton" onClick={handleSearch}>Search</button>
             </div>
-            <div className="hotelContainer">
+            <div className="adminHotelContainer">
                     {filteredHotels.length > 0 ? (
                         filteredHotels.map((hotel: any, index: number) => (
                             <div key={index} className="hotelData">
@@ -69,7 +77,7 @@ const Admin = () => {
                                 <span className="dataText">Single Rooms: <br /> <span className="data">{hotel.singleCameras}</span></span>
                                 <span className="dataText">Double Rooms: <br /> <span className="data">{hotel.doubleCameras}</span></span>
                                 <span className="dataText">Premium Rooms: <br /> <span className="data">{hotel.premiumCameras}</span></span>
-                                <button className="adminButton">Add photo</button>
+                                <button className="adminButton" onClick={() => handleAddPhoto(hotel.idHotel)}>Add photo</button>
                                 <button className="adminButton" onClick={() => handleDelete(hotel.idHotel)} style={{ background: 'red' }}>Delete Hotel</button>
                             </div>
                         ))
@@ -80,6 +88,7 @@ const Admin = () => {
             </div>
             <button className="adminButton" onClick={handleAddHotel}>Add Hotel</button>
             {openHotelMenu && <HotelMenu setOpenHotelMenu={setOpenHotelMenu}/>}
+            {openPhotoMenu && <AddPhotoMenu setOpenPhotoMenu={setOpenPhotoMenu} hotelId={hotelId}/>}
         </div>
     );
 };
