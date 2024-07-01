@@ -27,7 +27,9 @@ const SearchHotel = ({hotel, destination, date, options}:any) => {
         <img src={data.urlPhoto} alt="" className="itemImg" />
         <div className="itemDescription">
             <h1 className="itemTitle">{hotel.hotelName}</h1>
-            <span>{hotel.hotelDescription}</span>
+            <span>The hotel from {hotel.hotelLocation} has:
+                <ul>single, double and premium rooms!</ul>
+            </span>
         </div>
         <div className="itemDetails">
             <div className="itemRating">
@@ -37,7 +39,7 @@ const SearchHotel = ({hotel, destination, date, options}:any) => {
             <div className="itemText">
                 <span className="itemPrice">{minimumPrice} RON</span>
             </div>
-            <button onClick={() => handleAvailability()}>See Availability</button>
+            <button onClick={() => handleAvailability()}>Book rooms</button>
         </div>
       </div>
     );

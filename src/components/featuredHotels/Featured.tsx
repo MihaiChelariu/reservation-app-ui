@@ -35,6 +35,7 @@ const Featured = () => {
         }
     }, [hotels]);
 
+    const firstSixHotels = hotels.slice(0, 6);
     
 
     const handleClick = (index: number)=>{

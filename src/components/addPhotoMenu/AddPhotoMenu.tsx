@@ -16,7 +16,7 @@ const AddPhotoMenu = ({setOpenPhotoMenu, hotelId}: any) => {
                 axios.post(`http://localhost:8091/api/photos/savePhoto`,{
                     idHotel: hotelId,
                     urlPhoto: url,
-                    photoType: type
+                    photoType: JSON.stringify(type)
                 });
                 setOpenPhotoMenu(false);
                 alert("Photo saved!");
@@ -33,7 +33,7 @@ const AddPhotoMenu = ({setOpenPhotoMenu, hotelId}: any) => {
             <FontAwesomeIcon icon={faCircleXmark} className="closeButton" onClick={() => setOpenPhotoMenu(false)} />
                 <div className="addPhotoOptions">
                     <span>Photo type: </span>
-                    <select id="dropdown" value={type} onChange={e => setType(e.target.value)}>
+                    <select id="dropdown" value={type} onChange={e => {setType(e.target.value)}}>
                         <option value="">Hotel</option>
                         <option value="single">Single room</option>
                         <option value="double">Double room</option>

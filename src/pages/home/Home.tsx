@@ -15,7 +15,7 @@ const Home = () => {
             <Navbar />
             <Header />
             <div className="homeContainer">
-                <h1 className="homeTitle">Popular Destinations</h1>
+                <h1 className="homeTitle">Available Hotels</h1>
                 <Featured />
                 <Footer />
             </div>

@@ -40,7 +40,7 @@
 }
 
 .itemRating>button{
-    background-color: yellowgreen;
+    background-color: rgb(65, 126, 65);
     color: white;
     border:none;
     border-radius: 10px;
@@ -57,7 +57,7 @@
 }
 
 .itemDetails>button{
-    background-color: yellowgreen;
+    background-color: rgb(65, 126, 65);
     color: white;
     width: 150px;
     height: 30px;

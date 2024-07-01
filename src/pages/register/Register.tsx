@@ -12,6 +12,7 @@ const Register = () => {
     const [userName, setUserName] = useState<string>();
     const [userEmail, setUserEmail] = useState<string>();
     const [userPassword, setUserPassword] = useState<string>();
+    const [error, setError] = useState<string>();
     const navigate = useNavigate();
 
     const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,23 +31,21 @@ const Register = () => {
         e.preventDefault();
 
         try {
-            const savedUser = await axios.post("http://localhost:8090/api/user/saveUser", { userName, userEmail, userPassword });
+            const response = await axios.post("http://localhost:8090/api/user/saveUser", { userName, userEmail, userPassword });
+            const savedUser = response.data;
 
-            console.log(savedUser.data.userEmail);
-            
-            axios.get(`http://localhost:8090/api/user/getUserByEmail/${savedUser.data.userEmail}`)
-                .then(response => {
-                    const user = response.data;
-                    Cookies.set('userLogin', user.idUser);
-                    Cookies.set('adminUser', user.isAdmin);
-                    navigate("/");
-                    console.log(user);
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        } catch(err) {
+            const userResponse = await axios.get(`http://localhost:8090/api/user/getUserByEmail/${savedUser.userEmail}`);
+            const user = userResponse.data;
+            Cookies.set('userLogin', user.idUser);
+            Cookies.set('adminUser', user.isAdmin);
+            navigate("/");
+        } catch (err: any) {
             console.log(err);
+            if (err.response && err.response.data) {
+                setError(err.response.data);
+            } else {
+                setError("An unknown error occurred");
+            }
         }
     }
 
@@ -62,6 +61,7 @@ const Register = () => {
                 <input type="password" placeholder="password" onChange={handlePasswordChange}/>
                 <button onClick={handleClick}>Create account</button>
                 <p>Do you already have an account? <span onClick={handleLogIn}>Log In!</span></p>
+                {error && <p className="error">{error}</p>}
             </div>
         </div>
     );
